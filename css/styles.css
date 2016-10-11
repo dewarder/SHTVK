@@ -55,22 +55,22 @@ header {
     transform: translate(-50%, -50%);
 }
 
+#left, #right {
+    width: 60px;
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    z-index: 1;
+}
+
 #left {
     background: url("/img/ic_left.png") no-repeat center;
-    width: 60px;
-    top: 0;
     left: 0;
-    bottom: 0;
-    position: absolute;
 }
 
 #right {
     background: url("/img/ic_right.png") no-repeat center;
-    width: 60px;
-    position: absolute;
     right: 0;
-    bottom: 0;
-    top: 0;
 }
 
 #left:hover, #right:hover {
@@ -106,6 +106,10 @@ a {
     text-decoration: none;
     font-size: 18px;
     color: #2a5885;
+}
+
+#name:hover {
+    text-decoration: underline;
 }
 
 #comment {
