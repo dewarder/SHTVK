@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="css/styles.css" rel="stylesheet">
+    <script type="text/javascript" src="//vk.com/js/api/openapi.js?130"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="js/slider.js"></script>
+    <script src="//twemoji.maxcdn.com/2/twemoji.min.js?2.2"></script>
+    <script type="text/javascript">
+        VK.init({apiId: 5174764});
+    </script>
+    <script>
+        VK.Auth.login(function (response) {
+            if (response.session) {
+                getAllComments(-8020120, 3430483, function (comments) {
+                    comments = filterWithPhoto(comments);
+                    comments = filterByGender(comments, 1);
+                    comments = sortByLikes(comments);
+                    initSlider(comments);
+                    nextComment();
+                });
+            }
+        });
+    </script>
+</head>
+<body>
+<div id="wrapper">
+    <header>
+        <div id="user">
+            <div id="avatar">
+                <img/>
+            </div>
+        </div>
+        <div id="data">
+            <div id="name"></div>
+            <div id="comment"></div>
+        </div>
+
+    </header>
+    <div id="content">
+        <div id="left" onclick="previousComment()">
+
+        </div>
+        <div id="right" onclick="nextComment()">
+
+        </div>
+        <a href="#" class="img-wrapper">
+            <img id="photo" class="img">
+        </a>
+
+    </div>
+    <div class="footer">
+        Артем Глуговский © 2016
+    </div>
+</div>
+</body>
+</html>
