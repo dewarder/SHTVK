@@ -1,8 +1,13 @@
+const profileLink = "https://vk.com/id";
 var commentIndex = -1;
 var comments = [];
 
 function bindComment(comment) {
     console.log(JSON.stringify(comment));
+    var link = profileLink + comment.user.id;
+
+    document.getElementById("avatar")
+        .setAttribute("href", link);
 
     document.getElementById("avatar")
         .getElementsByTagName("img")[0]
@@ -10,7 +15,9 @@ function bindComment(comment) {
 
     document.getElementById("name").innerHTML = comment.user.first_name + " "
         + comment.user.last_name;
+    document.getElementById("name").setAttribute("href", link);
 
+    document.getElementById("photoLink").setAttribute("href", link);
     document.getElementById("photo")
         .setAttribute("src", getPhoto(comment));
 

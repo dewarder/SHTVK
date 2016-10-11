@@ -103,6 +103,7 @@ a {
 }
 
 #name {
+    text-decoration: none;
     font-size: 18px;
     color: #2a5885;
 }

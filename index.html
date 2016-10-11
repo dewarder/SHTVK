@@ -14,10 +14,10 @@
     <script>
         VK.Auth.login(function (response) {
             if (response.session) {
-                getAllComments(-8020120, 3430483, function (comments) {
+                getAllComments(-8020120, 3445325, function (comments) {
                     comments = filterWithPhoto(comments);
                     comments = filterByGender(comments, 1);
-                    comments = sortByLikes(comments);
+                    comments = shuffle(comments);
                     initSlider(comments);
                     nextComment();
                 });
@@ -29,12 +29,12 @@
 <div id="wrapper">
     <header>
         <div id="user">
-            <div id="avatar">
+            <a id="avatar" target="_blank">
                 <img/>
-            </div>
+            </a>
         </div>
         <div id="data">
-            <div id="name"></div>
+            <a id="name"></a>
             <div id="comment"></div>
         </div>
 
@@ -46,7 +46,7 @@
         <div id="right" onclick="nextComment()">
 
         </div>
-        <a href="#" class="img-wrapper">
+        <a id="photoLink" href="#" target="_blank" class="img-wrapper">
             <img id="photo" class="img">
         </a>
 
