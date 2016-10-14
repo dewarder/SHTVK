@@ -26,13 +26,135 @@ html, body {
 }
 
 #wrapper {
-    margin: 0 auto;
-    width: 100%;
-    max-width: 1170px;
     position: relative;
     height: 100vh;
     padding: 100px 0 30px 0;
     box-sizing: border-box;
+}
+
+.container {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1170px;
+}
+
+.form {
+    max-width: 400px;
+    width: 100%;
+    margin: auto;
+}
+
+.form__list {
+    list-style: none;
+    padding: 0;
+}
+
+.form__item {
+    display: block;
+    font-size: 0;
+}
+
+.form__item_margin {
+    margin: 0 -10px;
+}
+
+.form__item:not(:last-child) {
+    margin-bottom: 60px;
+}
+
+.form__input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 100%;
+    box-shadow: none;
+    border: none;
+    font-size: 18px;
+    color: #010101;
+    outline: none;
+    line-height: 38px;
+    border-bottom: 1px solid #d3d3d3;
+}
+
+.form__label {
+    color: #2a5885;
+    font-size: 14px;
+    display: block;
+    line-height: 2;
+}
+
+.form__select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 100%;
+    box-shadow: none;
+    border: none;
+    font-size: 14px;
+    color: #010101;
+    outline: none;
+    border-bottom: 1px solid #d3d3d3;
+    padding: 8px 0;
+    padding-right: 10px;
+    box-sizing: border-box;
+    background: url("../img/select_icon.png") center right no-repeat;
+}
+
+.form__submit {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 100%;
+    box-shadow: none;
+    border: none;
+    background: #f1f1f1;
+    line-height: 38px;
+    color: #999999;
+    text-transform: uppercase;
+    cursor: pointer;
+    opacity: 0.8;
+    outline: none;
+}
+
+.form__submit-decoration {
+    height: 38px;
+    width: 100%;
+    display: none;
+    background: url("../img/smile.png") center center no-repeat #cbd6e1;
+    margin-top: 20px;
+}
+
+.form__submit.active + .form__submit-decoration {
+    display: block;
+}
+
+.form__submit:hover {
+    opacity: 1;
+}
+
+.form__select-wrapper {
+    width: 50%;
+    display: inline-block;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+:-moz-placeholder,
+:-ms-input-placeholder,
+::-webkit-input-placeholder,
+::-moz-placeholder {
+    color: #d3d3d3;
+}
+
+.start-page {
+    padding: 100px 0;
+}
+
+.logo {
+    font-weight: 300;
+    color: #4e648c;
+    text-align: center;
+    font-size: 30px;
 }
 
 header {
