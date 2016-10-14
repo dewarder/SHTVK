@@ -14,10 +14,10 @@
     <script>
         VK.Auth.login(function (response) {
             if (response.session) {
-                getAllComments(-8020120, 3445325, function (comments) {
+                getAllComments(-8020120, 3454253, function (comments) {
                     comments = filterWithPhoto(comments);
                     comments = filterByGender(comments, 1);
-                    comments = shuffle(comments);
+                    comments = sortByLikes(comments);
                     initSlider(comments);
                     nextComment();
                 });

@@ -85,3 +85,21 @@ function shuffle(array) {
   }
   return array;
 }
+
+function parseLink(link) {
+  var begin = link.indexOf("wall-");
+
+  if (begin >= 0) {
+    var ids = link.substring(begin + 5).split("_");
+
+    if (ids.length >= 2) {
+      var groupId = ids[0];
+      var postId = ids[1];
+      if (postId.indexOf('?') > 0) {
+        postId = postId.split('?')[0];
+      }
+      return {groupId: groupId, postId: postId};
+    }
+  }
+  return null;
+}
