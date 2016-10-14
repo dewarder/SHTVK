@@ -26,35 +26,37 @@
     </script>
 </head>
 <body>
-<div id="preloader"></div>
-<div id="wrapper">
-    <header>
-        <div id="user">
-            <a id="avatar" target="_blank">
-                <img/>
+<div class="container">
+    <div id="preloader"></div>
+    <div id="wrapper">
+        <header>
+            <div id="user">
+                <a id="avatar" target="_blank">
+                    <img/>
+                </a>
+            </div>
+            <div id="data">
+                <a id="name"></a>
+                <div id="comment"></div>
+            </div>
+
+        </header>
+        <div id="content">
+            <div id="left" onclick="previousComment()">
+
+            </div>
+            <div id="right" onclick="nextComment()">
+
+            </div>
+            <a id="photoLink" href="#" target="_blank" class="img-wrapper image-preloader">
+                <img id="photo" class="img">
             </a>
-        </div>
-        <div id="data">
-            <a id="name"></a>
-            <div id="comment"></div>
-        </div>
-
-    </header>
-    <div id="content">
-        <div id="left" onclick="previousComment()">
 
         </div>
-        <div id="right" onclick="nextComment()">
-
+        <div class="footer">
+            <a href="https://vk.com/googlevsky" class="footer__creator-link">Артем Глуговский</a>,
+            <a href="https://vk.com/id_cold_water" class="footer__creator-link">Андрій Когут</a> © 2016
         </div>
-        <a id="photoLink" href="#" target="_blank" class="img-wrapper image-preloader">
-            <img id="photo" class="img">
-        </a>
-
-    </div>
-    <div class="footer">
-        <a href="https://vk.com/googlevsky" class="footer__creator-link">Артем Глуговский</a>,
-        <a href="https://vk.com/id_cold_water" class="footer__creator-link">Андрій Когут</a> © 2016
     </div>
 </div>
 </body>
