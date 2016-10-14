@@ -1,3 +1,25 @@
+const ACTIVE_CLASS_NAME = 'active';
+const submitButtonToHover = document.getElementById('submitToHover');
+let valid = false;
+
+function validate(value) {
+  if(value) {
+    submitButtonToHover.classList.add(ACTIVE_CLASS_NAME);
+    valid = true
+  } else {
+    submitButtonToHover.classList.remove(ACTIVE_CLASS_NAME);
+    valid = false;
+  }
+}
+
+function send(url) {
+  if(!url) {
+    return false;
+  }
+
+  console.log(url);
+}
+
 function getAllComments(ownerId, postId, callback) {
   VK.Api.call("execute.getAllComments", {
     "owner_id": ownerId,
