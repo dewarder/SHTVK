@@ -1,3 +1,13 @@
+@keyframes rotating {
+    from {
+
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
 html, body {
     padding: 0;
     margin: 0;
@@ -53,6 +63,7 @@ html, body {
 .form__item {
     display: block;
     font-size: 0;
+    position: relative;
 }
 
 .form__item_margin {
@@ -117,16 +128,40 @@ html, body {
     outline: none;
 }
 
-.form__submit-decoration {
-    height: 38px;
-    width: 100%;
-    display: none;
-    background: url("../img/smile.png") center center no-repeat #cbd6e1;
-    margin-top: 20px;
+.form__submit.active {
+    color: #2a5885;
+    background: #e3e9ef;
 }
 
-.form__submit.active + .form__submit-decoration {
+.form__submit.load + .loading {
     display: block;
+}
+
+.loading {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 2;
+    background: #cbd6e1;
+    display: none;
+}
+.loading:before {
+    content: '';
+    height: 12px;
+    width: 26px;
+    background: url("../img/smile.png") center center no-repeat transparent;
+    animation-name: rotating;
+    animation-duration: 3s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -13px;
+    margin-top: -6px;
 }
 
 .form__submit:hover {
