@@ -27,7 +27,7 @@ function validate(value) {
 
 function send(gender, sortType) {
     let {groupId, postId} = requestData;
-    submitButtonToHover.classList.add(LOADING_CLASS_NAME);
+
     if (groupId && postId && signed) {
         submitButtonToHover.classList.add(LOADING_CLASS_NAME);
 
