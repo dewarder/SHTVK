@@ -13,12 +13,13 @@ function bindComment(comment) {
     preloader = document.getElementById("preloader");
   }
 
-  document.getElementById("avatar")
-    .setAttribute("href", link);
+  document.getElementById("avatar").setAttribute("href", link);
 
-  document.getElementById("avatar")
-    .getElementsByTagName("img")[0]
-    .setAttribute("src", comment.user.photo_100);
+  var avatarUrl = comment.user.photo_100;
+  if (!isImageCached(avatarUrl)) {
+    document.getElementById("avatarImage").setAttribute("src", "");
+  }
+  document.getElementById("avatarImage").setAttribute("src", avatarUrl);
 
   document.getElementsByClassName("img")[0].onload = function () {
     document.getElementsByClassName("img")[0].parentElement.classList.remove(PRELOADER_CLASS_NAME);
@@ -29,8 +30,12 @@ function bindComment(comment) {
   document.getElementById("name").setAttribute("href", link);
 
   document.getElementById("photoLink").setAttribute("href", link);
-  document.getElementById("photo")
-    .setAttribute("src", getPhoto(comment));
+
+  var photoUrl = getAttachedPhotoUrlFromComment(comment);
+  if (!isImageCached(photoUrl)) {
+    document.getElementById("photo").setAttribute("src", "");
+  }
+  document.getElementById("photo").setAttribute("src", photoUrl);
 
   document.getElementById("comment").innerHTML = twemoji.parse(comment.text);
 
@@ -41,6 +46,7 @@ function bindComment(comment) {
 }
 
 function initSlider(data) {
+  commentIndex = -1;
   comments = data;
 
   document.onkeydown = checkKey;
@@ -70,4 +76,11 @@ function previousComment() {
     commentIndex = comments.length - 1;
   }
   bindComment(comments[commentIndex]);
+}
+
+function isImageCached(src) {
+  var image = new Image();
+  image.src = src;
+
+  return image.complete;
 }
