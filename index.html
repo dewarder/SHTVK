@@ -4,31 +4,44 @@
     <meta charset="UTF-8">
     <title>SHTVK</title>
     <link href="css/styles.css" rel="stylesheet">
-    <script type="text/javascript" src="//vk.com/js/api/openapi.js?130"></script>
-    <script type="text/javascript" src="js/main.js"></script>
-    <script type="text/javascript" src="js/slider.js"></script>
     <script src="//twemoji.maxcdn.com/2/twemoji.min.js?2.2"></script>
-    <script type="text/javascript">
-        VK.init({apiId: 5174764});
-    </script>
-    <script>
-        VK.Auth.login(function (response) {
-            if (response.session) {
-                getAllComments(-8020120, 3454253, function (comments) {
-                    comments = filterWithPhoto(comments);
-                    comments = filterByGender(comments, 1);
-                    comments = sortByLikes(comments);
-                    initSlider(comments);
-                    nextComment();
-                });
-            }
-        });
-    </script>
 </head>
 <body>
-<div class="container">
-    <div id="preloader"></div>
+<div class="container footer-pos">
+    <div class="start-page">
+        <form class="form" onsubmit="return send(gender.value, sorting.value)">
+            <h1 class="logo">Шукаю тебе ВК</h1>
+            <ul class="form__list">
+                <li class="form__item">
+                    <input type="text" name="url" class="form__input" placeholder="Вставте посилання на пост"
+                           onchange="validate(this.value)">
+                </li>
+                <li class="form__item form__item_margin">
+                    <div class="form__select-wrapper">
+                        <label for="gender" class="form__label">Стать</label>
+                        <select name="gender" id="gender" class="form__select">
+                            <option value="1">Жіноча</option>
+                            <option value="0">Чоловіча</option>
+                        </select>
+                    </div>
+                    <div class="form__select-wrapper">
+                        <label for="sorting" class="form__label">Сортувати</label>
+                        <select name="sorting" id="sorting" class="form__select">
+                            <option value="likes">Кількість лайків</option>
+                            <option value="random">Довільно</option>
+                        </select>
+                    </div>
+                </li>
+                <li class="form__item">
+                    <input type="submit" id="submitToHover" class="form__submit" value="Розпочати">
+                    <span class="form__submit-decoration"></span>
+                </li>
+            </ul>
+        </form>
+    </div>
+
     <div id="wrapper">
+        <div id="preloader"></div>
         <header>
             <div id="user">
                 <a id="avatar" target="_blank">
@@ -53,11 +66,15 @@
             </a>
 
         </div>
-        <div class="footer">
-            <a href="https://vk.com/googlevsky" class="footer__creator-link">Артем Глуговский</a>,
-            <a href="https://vk.com/id_cold_water" class="footer__creator-link">Андрій Когут</a> © 2016
-        </div>
     </div>
+    <footer class="footer">
+        <a href="https://vk.com/googlevsky" class="footer__creator-link">Артем Глуговский</a>,
+        <a href="https://vk.com/id_cold_water" class="footer__creator-link">Андрій Когут</a> © 2016
+    </footer>
+
 </div>
+<script type="text/javascript" src="//vk.com/js/api/openapi.js?130" async defer></script>
+<script type="text/javascript" src="js/slider.js" async defer></script>
+<script type="text/javascript" src="js/main.js" async defer></script>
 </body>
 </html>

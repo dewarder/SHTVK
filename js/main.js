@@ -1,23 +1,70 @@
 const ACTIVE_CLASS_NAME = 'active';
 const submitButtonToHover = document.getElementById('submitToHover');
+const sliderContainer = document.getElementById('wrapper');
+
 let valid = false;
+let signed = false;
+let requestData = {};
+
+VK.init({apiId: 5174764});
+
+VK.Auth.login(function (response) {
+  if (response.session) {
+    signed = true;
+  }
+});
 
 function validate(value) {
-  if(value) {
+  requestData = parseLink(value);
+  isValid = !!requestData;
+
+  if (isValid) {
     submitButtonToHover.classList.add(ACTIVE_CLASS_NAME);
-    valid = true
+    valid = true;
   } else {
     submitButtonToHover.classList.remove(ACTIVE_CLASS_NAME);
     valid = false;
   }
 }
 
-function send(url) {
-  if(!url) {
-    return false;
+function send(gender, sortType) {
+
+  let {groupId, postId} = requestData;
+
+  console.log(gender, sortType);
+
+  if (valid && signed) {
+    getAllComments(groupId, postId, function (comments) {
+      comments = filterWithPhoto(comments);
+      comments = filterByGender(comments, gender);
+
+      switch (sortType) {
+        case 'likes' : {
+          comments = sortByLikes(comments);
+          break;
+        }
+        case 'random' : {
+          comments = shuffle(comments);
+          break;
+        }
+        default : {
+          comments = sortByLikes(comments);
+        }
+      }
+
+      initSlider(comments);
+      nextComment();
+
+      if(comments) {
+        sliderContainer.style.display = 'block';
+        window.scrollTo(0, sliderContainer.scrollHeight);
+      }
+
+
+    });
   }
 
-  console.log(url);
+  return false;
 }
 
 function getAllComments(ownerId, postId, callback) {
@@ -109,10 +156,10 @@ function shuffle(array) {
 }
 
 function parseLink(link) {
-  var begin = link.indexOf("wall-");
+  var begin = link.indexOf("wall");
 
   if (begin >= 0) {
-    var ids = link.substring(begin + 5).split("_");
+    var ids = link.substring(begin + 4).split("_");
 
     if (ids.length >= 2) {
       var groupId = ids[0];
