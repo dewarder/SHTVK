@@ -38,6 +38,48 @@ function getAllComments(ownerId, postId, callback) {
   });
 }
 
+function getAge(userId, callback) {
+  VK.Api.call("execute.getAge", {user_id: userId, v: 5.57}, function (data) {
+    if (data.response) {
+      switch (data.response.type) {
+        case "full": {
+          var date = new Date(data.response.year, data.response.month - 1, data.response.day);
+          callback(getDifferenceInYears(new Date(), date));
+          break;
+        }
+
+        case "partial": {
+          var query = data.response.query;
+          query.user_id = userId;
+          query.ageFrom = data.response.ageFrom;
+          query.ageTo = data.response.ageTo;
+          query.middle = data.response.middle;
+          checkAge(query, callback);
+          break;
+        }
+
+        default: {
+          callback(null);
+          break;
+        }
+      }
+    }
+  });
+}
+
+function checkAge(query, callback) {
+  query.v = 5.57;
+  cleanObjects(objects);
+  VK.Api.call("execute.checkAge", query, function (data) {
+    console.log(data);
+    if (data.response) {
+      callback(data.response);
+    } else {
+      callback(null);
+    }
+  })
+}
+
 function getAttachedPhotoUrlFromComment(comment) {
   var photo;
   for (var i = 0; i < comment.attachments.length; i++) {
@@ -101,4 +143,21 @@ function parseLink(link) {
     }
   }
   return null;
+}
+
+function cleanObjects(objects) {
+  for (var property in objects) {
+    if (objects.hasOwnProperty(property) && (objects[property] === null || objects[property] === undefined)) {
+      delete objects[property];
+    }
+  }
+}
+
+function getDifferenceInYears(date1, date2) {
+  var years = date1.getFullYear() - date2.getFullYear();
+  var m = date1.getMonth() - date2.getMonth();
+  if (m < 0 || (m === 0 && date1.getDate() < date2.getDate())) {
+    years--;
+  }
+  return years;
 }
