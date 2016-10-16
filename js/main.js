@@ -2,24 +2,26 @@ const ACTIVE_CLASS_NAME = 'active';
 const LOADING_CLASS_NAME = 'load';
 
 //Elements
-const submitButton = document.getElementById('submitToHover');
-const sliderContainer = document.getElementById('wrapper');
+const SUBMIT_BUTTON = document.getElementById('submitToHover');
+const SLIDER_CONTAINER = document.getElementById('wrapper');
+const LINK = document.getElementById("link");
 
+validate(LINK.value);
 initSubmitButton();
 
 function initSubmitButton() {
   if (isLoggedIn()) {
-    submitButton.setAttribute("value", "Розпочати");
+    SUBMIT_BUTTON.setAttribute("value", "Розпочати");
   } else {
-    submitButton.setAttribute("value", "Увійти та розпочати");
+    SUBMIT_BUTTON.setAttribute("value", "Увійти та розпочати");
   }
 }
 
 function validate(value) {
   if (parseLink(value)) {
-    submitButton.classList.add(ACTIVE_CLASS_NAME);
+    SUBMIT_BUTTON.classList.add(ACTIVE_CLASS_NAME);
   } else {
-    submitButton.classList.remove(ACTIVE_CLASS_NAME);
+    SUBMIT_BUTTON.classList.remove(ACTIVE_CLASS_NAME);
   }
 }
 
@@ -38,7 +40,7 @@ function loginIfNeededAndLoad(link, gender, sortType) {
 }
 
 function loadComments(link, gender, sortType) {
-  submitButton.classList.add(LOADING_CLASS_NAME);
+  SUBMIT_BUTTON.classList.add(LOADING_CLASS_NAME);
   let {groupId, postId} = parseLink(link);
   getAllComments(groupId, postId, function (comments) {
     comments = filterWithPhoto(comments);
@@ -49,9 +51,9 @@ function loadComments(link, gender, sortType) {
     nextComment();
 
     if (comments) {
-      sliderContainer.style.display = 'block';
-      window.scrollTo(0, sliderContainer.scrollHeight);
-      submitButton.classList.remove(LOADING_CLASS_NAME);
+      SLIDER_CONTAINER.style.display = 'block';
+      window.scrollTo(0, SLIDER_CONTAINER.scrollHeight);
+      SUBMIT_BUTTON.classList.remove(LOADING_CLASS_NAME);
     }
   });
 }
