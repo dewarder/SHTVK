@@ -94,6 +94,7 @@ html, body {
     font-size: 14px;
     display: block;
     line-height: 2;
+    margin-left: 3px;
 }
 
 .form__select {
@@ -185,7 +186,7 @@ html, body {
 }
 
 .start-page {
-    padding: 100px 0;
+    padding: 60px 0;
     box-sizing: border-box;
     min-height: 100vh;
 }
@@ -195,6 +196,11 @@ html, body {
     color: #4e648c;
     text-align: center;
     font-size: 30px;
+    font-family: "Roboto Light", Arial, serif;
+    margin-bottom: 100px;
+    background: -webkit-gradient(linear, left top, left bottom, from(#290a59), to(#ff7c00));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 header {
