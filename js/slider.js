@@ -84,11 +84,15 @@ function initSlider(data) {
   function checkKey(e) {
     e = e || window.event;
 
-    if (e.keyCode == '37') {
+    if (e.keyCode == '37' || e.keyCode == '65') {
       previousComment();
     }
-    else if (e.keyCode == '39') {
+    else if (e.keyCode == '39' || e.keyCode == '68') {
       nextComment();
+    }
+    else if (e.keyCode == '81') {
+      var newTab = window.open(PROFILE_LINK + comments[commentIndex].user.id, '_blank');
+      window.focus();
     }
   }
 }
